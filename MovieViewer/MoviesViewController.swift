@@ -14,6 +14,8 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBOutlet weak var tableView: UITableView!
     var movies: [NSDictionary]?
+    var refreshControl: UIRefreshControl!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +24,18 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.tableView.delegate = self
         // Do any additional setup after loading the view.
         
+        self.loadData()
+     
+        // Pull to refresh
         
+        refreshControl = UIRefreshControl()
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(MoviesViewController.refresh), for: UIControlEvents.valueChanged)
+        tableView.addSubview(refreshControl) // not required when using UITableViewController
+    }
+    
+    
+    func loadData(){
         let clientId = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
         // Make sure there is no leading or trailing spaces, probably not wise to force unwrap via !:
         let url = NSURL(string:"https://api.themoviedb.org/3/movie/now_playing?api_key=\(clientId)")
@@ -50,7 +63,13 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         });
         task.resume()
         
-        
+    }
+    func refresh(sender:AnyObject) {
+        // Code to refresh table view
+        print("REFRESSHING")
+        self.loadData()
+        refreshControl.endRefreshing()
+
     }
     
     func errocCallback(_ error: Error){
