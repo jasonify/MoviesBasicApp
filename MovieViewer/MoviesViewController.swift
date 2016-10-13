@@ -81,15 +81,20 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let title = self.movies?[indexPath.row]["title"]
         let overview = self.movies?[indexPath.row]["overview"] as? String
         
-        let posterPath = self.movies?[indexPath.row]["poster_path"] as! String
+        let posterPathSource = self.movies?[indexPath.row]["poster_path"]
         
-        print(posterPath)
-        let baseURL = "https://image.tmdb.org/t/p/w500"
+        if let posterPath = posterPathSource as? String{
         
-        let imgURL = NSURL(string: "\(baseURL)\(posterPath)")
-        print(imgURL)
+            print(posterPath)
+            let baseURL = "https://image.tmdb.org/t/p/w500"
+            
+            let imgURL = NSURL(string: "\(baseURL)\(posterPath)")
+            print(imgURL)
+            
+            cell.posterImage.setImageWith(imgURL as! URL)
+            
+        }
         
-       cell.posterImage.setImageWith(imgURL as! URL)
         
         
         cell.title?.text = title as? String;
