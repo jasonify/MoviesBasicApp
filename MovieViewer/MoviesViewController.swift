@@ -83,6 +83,8 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         let posterPathSource = self.movies?[indexPath.row]["poster_path"]
         
+        // TODO: clear the poster iamge
+        
         if let posterPath = posterPathSource as? String{
         
             print(posterPath)
@@ -93,6 +95,10 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
             cell.posterImage.setImageWith(imgURL as! URL)
             
+        } else{
+            
+            // TODO CLEAR CELL XXX: crashes..
+            // cell.posterImage = nil
         }
         
         
@@ -108,14 +114,22 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     
-    /*
+    
      // MARK: - Navigation
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
+        print("About to segue")
+        let cell = sender as! MovieCell
+        let indexPath = tableView.indexPath(for: cell)
+        
+        let movie = movies![indexPath!.row]
+        let detailsViewControlelr = segue.destination as! MovieDetailsViewController
+        detailsViewControlelr.movie = movie
+        
+        
+        
      }
-     */
+    
     
 }
