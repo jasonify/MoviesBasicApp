@@ -75,11 +75,14 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath);
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
         
         let title = self.movies?[indexPath.row]["title"]
+        let overview = self.movies?[indexPath.row]["overview"] as? String
         
-        cell.textLabel?.text = title as? String;
+        cell.title?.text = title as? String;
+        cell.overview?.text = overview
+        
         return cell;
     }
     override func didReceiveMemoryWarning() {
