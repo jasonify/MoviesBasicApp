@@ -27,23 +27,28 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mdw-Pn-ZcS">
-                                                    <frame key="frameInset" minX="21" minY="16" width="291" height="21"/>
+                                                    <frame key="frameInset" minX="14" minY="16" width="298" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Dnm-ox-Mqh">
-                                                    <frame key="frameInset" minX="21" minY="44" width="297" height="87"/>
+                                                    <frame key="frameInset" minX="109" minY="44" width="209" height="87"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="ja7-an-7dy">
+                                                    <frame key="frameInset" minX="14" minY="41" width="86" height="88"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="overview" destination="Dnm-ox-Mqh" id="jak-Xb-z1f"/>
+                                            <outlet property="posterImage" destination="ja7-an-7dy" id="8H5-LB-c2C"/>
                                             <outlet property="title" destination="mdw-Pn-ZcS" id="LO5-0M-Pba"/>
                                         </connections>
                                     </tableViewCell>
