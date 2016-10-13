@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AFNetworking
 
 class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -57,7 +58,7 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func successCallback( data: NSDictionary){
-        print(data);
+        //print(data);
         self.movies = data["results"] as? [NSDictionary]
         self.tableView.reloadData()
     }
@@ -79,6 +80,17 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         let title = self.movies?[indexPath.row]["title"]
         let overview = self.movies?[indexPath.row]["overview"] as? String
+        
+        let posterPath = self.movies?[indexPath.row]["poster_path"] as! String
+        
+        print(posterPath)
+        let baseURL = "https://image.tmdb.org/t/p/w500"
+        
+        let imgURL = NSURL(string: "\(baseURL)\(posterPath)")
+        print(imgURL)
+        
+       cell.posterImage.setImageWith(imgURL as! URL)
+        
         
         cell.title?.text = title as? String;
         cell.overview?.text = overview
