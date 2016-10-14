@@ -15,7 +15,7 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var tableView: UITableView!
     var movies: [NSDictionary]?
     var refreshControl: UIRefreshControl!
-
+    var indicator = UIActivityIndicatorView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +23,9 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.tableView.dataSource = self
         self.tableView.delegate = self
         // Do any additional setup after loading the view.
+        
+        self.activityIndicator()
+        
         
         self.loadData()
      
@@ -32,10 +35,23 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refreshControl.addTarget(self, action: #selector(MoviesViewController.refresh), for: UIControlEvents.valueChanged)
         tableView.addSubview(refreshControl) // not required when using UITableViewController
+        //     tableView.insertSubview(refreshControl, atIndex: 0)
+
     }
     
+    func activityIndicator() {
+        indicator = UIActivityIndicatorView(frame:  CGRect(x: 0, y: 0, width: 50, height: 50) ) // CGRect(0, 0, 40, 40))
+        indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        indicator.center = self.view.center
+        self.view.addSubview(indicator)
+    }
     
-    func loadData(){
+    func loadData(_ doneLoading: (() -> Void )! = nil ){
+        print("SHOW INDICATOR")
+        indicator.startAnimating()
+        indicator.backgroundColor = UIColor.white
+        
+        
         let clientId = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
         // Make sure there is no leading or trailing spaces, probably not wise to force unwrap via !:
         let url = NSURL(string:"https://api.themoviedb.org/3/movie/now_playing?api_key=\(clientId)")
@@ -51,24 +67,40 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
                                                          completionHandler: { (dataOrNil, responseOrNil, errorOrNil) in
                                                             if let requestError = errorOrNil {
                                                                 self.errocCallback(requestError)
+                                                                self.indicator.stopAnimating()
+                                                                self.indicator.hidesWhenStopped = true
+                                                                if(doneLoading != nil){
+                                                                    doneLoading()
+                                                                }
+                                                                
                                                             } else {
+                                                                self.indicator.stopAnimating()
+                                                                self.indicator.hidesWhenStopped = true
                                                                 if let data = dataOrNil {
                                                                     if let responseDictionary = try! JSONSerialization.jsonObject(
                                                                         with: data, options:[]) as? NSDictionary {
-                                                                        NSLog("response: \(responseDictionary)")
+                                                                       // NSLog("response: \(responseDictionary)")
                                                                         self.successCallback(data: responseDictionary)
                                                                     }
+                                                                }
+                                                                if(doneLoading != nil){
+                                                                    doneLoading()
                                                                 }
                                                             }
         });
         task.resume()
         
     }
+    
+    
     func refresh(sender:AnyObject) {
         // Code to refresh table view
         print("REFRESSHING")
-        self.loadData()
-        refreshControl.endRefreshing()
+        self.loadData({() -> Void in
+                  self.refreshControl.endRefreshing() // TODO: move to right place
+            
+        })
+      
 
     }
     
@@ -127,6 +159,10 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         return cell;
     }
+    
+    
+   
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
