@@ -11,6 +11,7 @@ import AFNetworking
 
 class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var networkError: UIView!
     
     @IBOutlet weak var tableView: UITableView!
     var movies: [NSDictionary]?
@@ -19,6 +20,7 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        networkError.isHidden = true
         
         self.tableView.dataSource = self
         self.tableView.delegate = self
@@ -66,14 +68,17 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let task : URLSessionDataTask = session.dataTask(with: request as URLRequest,
                                                          completionHandler: { (dataOrNil, responseOrNil, errorOrNil) in
                                                             if let requestError = errorOrNil {
+                                                                print("NETWORK ERROR")
                                                                 self.errocCallback(requestError)
                                                                 self.indicator.stopAnimating()
                                                                 self.indicator.hidesWhenStopped = true
+                                                                self.networkError.isHidden = false
                                                                 if(doneLoading != nil){
                                                                     doneLoading()
                                                                 }
                                                                 
                                                             } else {
+                                                                self.networkError.isHidden = true
                                                                 self.indicator.stopAnimating()
                                                                 self.indicator.hidesWhenStopped = true
                                                                 if let data = dataOrNil {
@@ -97,11 +102,10 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // Code to refresh table view
         print("REFRESSHING")
         self.loadData({() -> Void in
-                  self.refreshControl.endRefreshing() // TODO: move to right place
+            self.refreshControl.endRefreshing() // TODO: move to right place
             
         })
       
-
     }
     
     func errocCallback(_ error: Error){
