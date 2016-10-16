@@ -37,9 +37,13 @@ class MovieDetailsViewController: UIViewController {
             
             let imgURL = NSURL(string: "\(baseURL)\(posterPath)")
             
+            let baseURLLarge = "https://image.tmdb.org/t/p/w1000"
+            let imgURLLarge = NSURL(string: "\(baseURLLarge)\(posterPath)")
+
             
             //posterImage.setImageWith(imgURL as! URL)
             let imageRequest = NSURLRequest(url: imgURL as! URL)
+            let imageRequestLarge = NSURLRequest(url: imgURLLarge as! URL)
 
             
             posterImage.setImageWith(imageRequest as URLRequest,
@@ -59,22 +63,23 @@ class MovieDetailsViewController: UIViewController {
                                                 
                                                 }, completion: { (sucess) -> Void in
                                                     
-                                                    /*
+                                                     print("LOADED IMAGE")
+                                                    
                                                      // The AFNetworking ImageView Category only allows one request to be sent at a time
                                                      // per ImageView. This code must be in the completion block.
-                                                     self.myImageView.setImageWithURLRequest(
-                                                     largeImageRequest,
+                                                     self.posterImage.setImageWith(
+                                                     imageRequestLarge as URLRequest,
                                                      placeholderImage: smallImage,
                                                      success: { (largeImageRequest, largeImageResponse, largeImage) -> Void in
                                                      
-                                                     self.myImageView.image = largeImage;
+                                                     self.posterImage.image = largeImage;
                                                      
                                                      },
                                                      failure: { (request, response, error) -> Void in
                                                      // do something for the failure condition of the large image request
                                                      // possibly setting the ImageView's image to a default image
                                                      })
-                                                     */
+                                                    
                                             })
                 },
                                           failure: { (request, response, error) -> Void in
