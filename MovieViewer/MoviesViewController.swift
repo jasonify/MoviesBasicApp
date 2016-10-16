@@ -29,6 +29,12 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.activityIndicator()
         
         
+        
+        // 
+        self.navigationController?.navigationBar.barTintColor = UIColor.blue
+        
+
+        
         self.loadData()
      
         // Pull to refresh
