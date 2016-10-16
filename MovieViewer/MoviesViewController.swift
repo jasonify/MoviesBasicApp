@@ -121,6 +121,26 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
       
     }
     
+    /*
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool{
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath){
+        let cell = tableView.cellForRow(at: indexPath)
+        cell?.backgroundColor = UIColor.red
+        
+    }
+    
+    func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath){
+        let cell = tableView.cellForRow(at: indexPath)
+        cell?.backgroundColor = UIColor.black
+        cell?.contentView.backgroundColor = UIColor.yellow
+    }
+
+    */
+    
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -165,8 +185,50 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
             let imgURL = NSURL(string: "\(baseURL)\(posterPath)")
             print(imgURL)
+            let imageRequest = NSURLRequest(url: imgURL as! URL)
+
             
-            cell.posterImage.setImageWith(imgURL as! URL)
+            cell.posterImage.setImageWith(imageRequest as URLRequest,
+                                          
+                                          
+                                          
+                                          placeholderImage: nil,
+                                          success: { (smallImageRequest, smallImageResponse, smallImage) -> Void in
+                                            
+                                            // smallImageResponse will be nil if the smallImage is already available
+                                            // in cache (might want to do something smarter in that case).
+                                             cell.posterImage.alpha = 0.0
+                                             cell.posterImage.image = smallImage;
+                                            
+                                            UIView.animate(withDuration: 1.3, animations: { () -> Void in
+                                                
+                                                cell.posterImage.alpha = 1.0
+                                                
+                                                }, completion: { (sucess) -> Void in
+                                                    
+                                                    /*
+                                                    // The AFNetworking ImageView Category only allows one request to be sent at a time
+                                                    // per ImageView. This code must be in the completion block.
+                                                    self.myImageView.setImageWithURLRequest(
+                                                        largeImageRequest,
+                                                        placeholderImage: smallImage,
+                                                        success: { (largeImageRequest, largeImageResponse, largeImage) -> Void in
+                                                            
+                                                            self.myImageView.image = largeImage;
+                                                            
+                                                        },
+                                                        failure: { (request, response, error) -> Void in
+                                                            // do something for the failure condition of the large image request
+                                                            // possibly setting the ImageView's image to a default image
+                                                    })
+                                                    */
+                                            })
+                },
+                                          failure: { (request, response, error) -> Void in
+                                            // do something for the failure condition
+                                            // possibly try to get the large image
+            })
+            
             
         } else{
             
