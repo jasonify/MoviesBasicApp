@@ -30,11 +30,18 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         
         
-        // 
+        //
         self.navigationController?.navigationBar.barTintColor = UIColor.blue
-        
+        self.navigationController?.navigationBar.tintColor = UIColor.yellow
 
         
+        self.navigationController!.navigationBar.titleTextAttributes =
+            ([NSFontAttributeName: UIFont(name: "BradleyHandITCTT-Bold", size: 36)!,
+              NSForegroundColorAttributeName: UIColor.yellow])
+
+        
+        
+
         self.loadData()
      
         // Pull to refresh
