@@ -121,6 +121,11 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
       
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    
     func errocCallback(_ error: Error){
         // print(error);
     }
