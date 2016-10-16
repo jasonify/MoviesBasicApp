@@ -37,7 +37,51 @@ class MovieDetailsViewController: UIViewController {
             
             let imgURL = NSURL(string: "\(baseURL)\(posterPath)")
             
-            posterImage.setImageWith(imgURL as! URL)
+            
+            //posterImage.setImageWith(imgURL as! URL)
+            let imageRequest = NSURLRequest(url: imgURL as! URL)
+
+            
+            posterImage.setImageWith(imageRequest as URLRequest,
+                                          
+                                                                                  
+                                          placeholderImage: nil,
+                                          success: { (smallImageRequest, smallImageResponse, smallImage) -> Void in
+                                            
+                                            // smallImageResponse will be nil if the smallImage is already available
+                                            // in cache (might want to do something smarter in that case).
+                                            self.posterImage.alpha = 0.0
+                                            self.posterImage.image = smallImage;
+                                            
+                                            UIView.animate(withDuration: 1.3, animations: { () -> Void in
+                                                
+                                                self.posterImage.alpha = 1.0
+                                                
+                                                }, completion: { (sucess) -> Void in
+                                                    
+                                                    /*
+                                                     // The AFNetworking ImageView Category only allows one request to be sent at a time
+                                                     // per ImageView. This code must be in the completion block.
+                                                     self.myImageView.setImageWithURLRequest(
+                                                     largeImageRequest,
+                                                     placeholderImage: smallImage,
+                                                     success: { (largeImageRequest, largeImageResponse, largeImage) -> Void in
+                                                     
+                                                     self.myImageView.image = largeImage;
+                                                     
+                                                     },
+                                                     failure: { (request, response, error) -> Void in
+                                                     // do something for the failure condition of the large image request
+                                                     // possibly setting the ImageView's image to a default image
+                                                     })
+                                                     */
+                                            })
+                },
+                                          failure: { (request, response, error) -> Void in
+                                            // do something for the failure condition
+                                            // possibly try to get the large image
+            })
+            
             
         } else{
             
