@@ -171,6 +171,15 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
         
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor.red
+        cell.selectedBackgroundView = backgroundView
+        
+        //
+        
+        // cell.setHighlighted(true, animated: true)
+        //
+        
         let title = self.movies?[indexPath.row]["title"]
         let overview = self.movies?[indexPath.row]["overview"] as? String
         
