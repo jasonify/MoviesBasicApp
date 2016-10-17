@@ -61,6 +61,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		9676EAC31DB4924D007FAD34 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		96CECADB1DAF53750077BB83 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +88,7 @@
 		96F5C2FD1DAEC14800E7ADAD = {
 			isa = PBXGroup;
 			children = (
+				9676EAC31DB4924D007FAD34 /* Images */,
 				96F5C3081DAEC14800E7ADAD /* MovieViewer */,
 				96F5C3071DAEC14800E7ADAD /* Products */,
 				1284E61B99984669E5690C82 /* Pods */,
