@@ -17,6 +17,7 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var movies: [NSDictionary]?
     var refreshControl: UIRefreshControl!
     var indicator = UIActivityIndicatorView()
+    var endpoint: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,8 +70,12 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         let clientId = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
         // Make sure there is no leading or trailing spaces, probably not wise to force unwrap via !:
-        let url = NSURL(string:"https://api.themoviedb.org/3/movie/now_playing?api_key=\(clientId)")
-        
+        let urlStr = "https://api.themoviedb.org/3/movie/\(endpoint!)?api_key=\(clientId)"
+        print(urlStr)
+        let url = NSURL(string: urlStr)
+        print(endpoint)
+        print(url)
+
         let request = NSURLRequest(url: url! as URL)
         let session = URLSession(
             configuration: URLSessionConfiguration.default,

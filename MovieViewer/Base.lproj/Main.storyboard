@@ -23,7 +23,7 @@
                                         <rect key="frame" x="0.0" y="92" width="320" height="132"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Xg0-Pk-nEx" id="gcO-BR-XWn">
-                                            <frame key="frameInset" width="287" height="131"/>
+                                            <frame key="frameInset" width="287" height="131.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mdw-Pn-ZcS">
@@ -137,7 +137,7 @@
         <!--Navigation Controller-->
         <scene sceneID="bPT-gL-zQd">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gfx-nT-Acf" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MoviesNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="gfx-nT-Acf" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="U23-js-ggK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
