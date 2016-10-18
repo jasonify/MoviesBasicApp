@@ -66,6 +66,8 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
      func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         print("ABOUT TO EDIT")
+        self.searchBar.setShowsCancelButton(true, animated: false)
+
     }// called when text starts editing
 
     
@@ -85,10 +87,13 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
         print("SEARSCHING", searchText)
+        self.searchBar.setShowsCancelButton(true, animated: false)
+
         if(searchText == ""){
             endpoint = originalEndpoint;
             isSearch = ""
         } else{
+            
           endpoint = ""
           searchQuery = "&query=\(searchText)"
             isSearch = "/search"
@@ -97,6 +102,18 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
         
     }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) // called when cancel button pressed
+    {
+
+        // Stop doing the search stuff
+        // and clear the text in the search bar
+        searchBar.text = ""
+        // Hide the cancel button
+        searchBar.showsCancelButton = false
+        // You could also change the position, frame etc of the searchBar
+    }
+    
     
     func activityIndicator() {
         indicator = UIActivityIndicatorView(frame:  CGRect(x: 0, y: 0, width: 50, height: 50) ) // CGRect(0, 0, 40, 40))
