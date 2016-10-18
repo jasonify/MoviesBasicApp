@@ -27,7 +27,8 @@ class MovieDetailsViewController: UIViewController {
         print(movie)
         titleLabel.text = movie["title"] as? String
         overview.text = movie["overview"] as? String
-
+        overview.sizeToFit()
+        
         // Load image:
         
         let posterPathSource = movie["poster_path"]
