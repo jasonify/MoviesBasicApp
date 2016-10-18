@@ -9,27 +9,36 @@
 import UIKit
 import AFNetworking
 
-class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     
     @IBOutlet weak var networkError: UIView!
     
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     var movies: [NSDictionary]?
     var refreshControl: UIRefreshControl!
     var indicator = UIActivityIndicatorView()
     var endpoint: String!
-    
+    var originalEndpoint: String!
+    var searchString = ""
+    var searchQuery = ""
+    var isSearch = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         networkError.isHidden = true
         
         self.tableView.dataSource = self
         self.tableView.delegate = self
+        
+        self.searchBar.delegate = self
+        
+        
         // Do any additional setup after loading the view.
         
         self.activityIndicator()
         
         
+        searchString = endpoint;
         
         //
         self.navigationController?.navigationBar.barTintColor = UIColor.blue
@@ -55,6 +64,40 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     }
     
+     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        print("ABOUT TO EDIT")
+    }// called when text starts editing
+
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        print("DONE!!")
+
+      //  self.loadData()
+
+    }
+    
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) // called when keyboard search button pressed
+    
+    {
+        print("!!!DONE!!")
+        self.loadData()
+    }
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
+        print("SEARSCHING", searchText)
+        if(searchText == ""){
+            endpoint = originalEndpoint;
+            isSearch = ""
+        } else{
+          endpoint = ""
+          searchQuery = "?query=\(searchText)"
+            isSearch = "search/"
+        }
+        
+
+        
+    }
+    
     func activityIndicator() {
         indicator = UIActivityIndicatorView(frame:  CGRect(x: 0, y: 0, width: 50, height: 50) ) // CGRect(0, 0, 40, 40))
         indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
@@ -70,8 +113,8 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         let clientId = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
         // Make sure there is no leading or trailing spaces, probably not wise to force unwrap via !:
-        let urlStr = "https://api.themoviedb.org/3/movie/\(endpoint!)?api_key=\(clientId)"
-        print(urlStr)
+        let urlStr = "https://api.themoviedb.org/3\(isSearch)/movie\(endpoint!)?api_key=\(clientId)\(searchQuery)"
+        print("URL STRING!", urlStr)
         let url = NSURL(string: urlStr)
         print(endpoint)
         print(url)

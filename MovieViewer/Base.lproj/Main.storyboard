@@ -23,7 +23,7 @@
                                         <rect key="frame" x="0.0" y="92" width="320" height="132"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Xg0-Pk-nEx" id="gcO-BR-XWn">
-                                            <frame key="frameInset" width="287" height="131.5"/>
+                                            <frame key="frameInset" width="287" height="131"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mdw-Pn-ZcS">
@@ -80,6 +80,7 @@
                     <navigationItem key="navigationItem" title="Movies" id="XfA-d4-Ylp"/>
                     <connections>
                         <outlet property="networkError" destination="2X3-1r-sqF" id="PKA-Tw-Yfh"/>
+                        <outlet property="searchBar" destination="J0x-5w-EGY" id="yIZ-Z5-Xde"/>
                         <outlet property="tableView" destination="UKr-aJ-mrt" id="bxe-PJ-99j"/>
                     </connections>
                 </viewController>
