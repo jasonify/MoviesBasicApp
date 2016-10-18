@@ -38,7 +38,7 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.activityIndicator()
         
         
-        searchString = endpoint;
+        originalEndpoint = endpoint;
         
         //
         self.navigationController?.navigationBar.barTintColor = UIColor.blue
@@ -90,8 +90,8 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
             isSearch = ""
         } else{
           endpoint = ""
-          searchQuery = "?query=\(searchText)"
-            isSearch = "search/"
+          searchQuery = "&query=\(searchText)"
+            isSearch = "/search"
         }
         
 
