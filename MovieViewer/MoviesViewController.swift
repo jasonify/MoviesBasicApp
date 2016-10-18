@@ -72,8 +72,8 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        print("DONE!!")
-
+        print("--DONE!!")
+        self.searchBar.resignFirstResponder()
       //  self.loadData()
 
     }
@@ -83,6 +83,9 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     {
         print("!!!DONE!!")
+        self.searchBar.resignFirstResponder()
+        self.searchBar.setShowsCancelButton(false, animated: false)
+
         self.loadData()
     }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
@@ -106,6 +109,9 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) // called when cancel button pressed
     {
 
+        self.searchBar.resignFirstResponder()
+
+        
         // Stop doing the search stuff
         // and clear the text in the search bar
         searchBar.text = ""
