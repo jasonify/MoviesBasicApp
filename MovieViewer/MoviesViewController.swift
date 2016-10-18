@@ -179,7 +179,7 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let backgroundView = UIView()
         backgroundView.backgroundColor = UIColor.red
         cell.selectedBackgroundView = backgroundView
-        
+     
         //
         
         // cell.setHighlighted(true, animated: true)
