@@ -10,15 +10,19 @@ import UIKit
 
 class MovieDetailsViewController: UIViewController {
 
+    @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var overview: UILabel!
     @IBOutlet weak var posterImage: UIImageView!
+    @IBOutlet weak var infoView: UIView!
     
     var movie :NSDictionary!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        scrollView.contentSize = CGSize(width: scrollView.frame.size.width, height: infoView.frame.origin.y + infoView.frame.size.height)
         print("Loaded view controller");
         print(movie)
         titleLabel.text = movie["title"] as? String
