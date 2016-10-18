@@ -111,6 +111,9 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         searchBar.text = ""
         // Hide the cancel button
         searchBar.showsCancelButton = false
+        endpoint = originalEndpoint;
+        isSearch = ""
+        
         // You could also change the position, frame etc of the searchBar
     }
     
