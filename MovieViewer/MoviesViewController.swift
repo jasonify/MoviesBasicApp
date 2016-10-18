@@ -176,9 +176,7 @@ class MoviesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
         
-        let backgroundView = UIView()
-        backgroundView.backgroundColor = UIColor.red
-        cell.selectedBackgroundView = backgroundView
+        
      
         //
         

@@ -17,12 +17,36 @@ class MovieCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
+        if(selected){
+            let backgroundView = UIView()
+            backgroundView.backgroundColor = UIColor.red
+            self.selectedBackgroundView = backgroundView
+        }
         // Configure the view for the selected state
+    }
+    
+    override func setHighlighted(_ highlighted: Bool, animated: Bool){
+        super.setHighlighted(highlighted, animated: animated)
+        
+        
+        if(highlighted){
+            title.textColor = UIColor.yellow
+            overview.textColor = UIColor.yellow
+            let backgroundView = UIView()
+            backgroundView.backgroundColor = UIColor.green
+            self.selectedBackgroundView = backgroundView
+        } else{
+            title.textColor = UIColor.black
+            overview.textColor = UIColor.black
+ 
+        }
     }
 
 }
