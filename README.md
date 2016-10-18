@@ -1,6 +1,6 @@
-# Project 1 - *Name of App Here*
+# Project 1 - i Movies App
 
-**Name of your app** is a movies app using the [The Movie Database API](http://docs.themoviedb.apiary.io/#).
+Movies App is a movies app using the [The Movie Database API](http://docs.themoviedb.apiary.io/#).
 
 Time spent: ~8  hours spent in total
 
@@ -16,7 +16,7 @@ The following **required** functionality is completed:
 
 The following **optional** features are implemented:
 
-- [ ] Add a tab bar for **Now Playing** and **Top Rated** movies.
+- [x] Add a tab bar for **Now Playing** and **Top Rated** movies.
 - [ ] Implement segmented control to switch between list view and grid view.
 - [ ] Add a search bar.
 - [x] All images fade in.
