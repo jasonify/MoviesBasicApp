@@ -41,8 +41,10 @@ class MovieCell: UITableViewCell {
             overview.textColor = UIColor.yellow
             let backgroundView = UIView()
             backgroundView.backgroundColor = UIColor.green
-            self.selectedBackgroundView = backgroundView
+            self.backgroundColor = UIColor.black
         } else{
+            self.backgroundColor = UIColor.white
+
             title.textColor = UIColor.black
             overview.textColor = UIColor.black
  
